@@ -97,10 +97,12 @@ Repo.addTrabajo({
   facultad: 'Ingeniería',
   facultadKey: 'ingenieria',
   carrera: 'Ingeniería en Sistemas',
-  fecha: '2025-10-24',
+  anio: '2025',
   etiquetas: ['inteligencia artificial', 'automatización', 'industria 4.0', 'optimización'],
   portada: '../img/ingenieria/cover-ia-procesos.jpg',
-  detalleUrl: 'html/ingenieria/ing-0002-inteligencia-artificial-en-la-optimizacion-de-procesos-industriales.html',
+  // Archivo real en /html/ingenieria/ing-0002-...
+  detalleUrl: 'ingenieria/ing-0002-inteligencia-artificial-en-la-optimizacion-de-procesos-industriales.html',
+  pdfUrl: '../pdfs/ia-procesos-industriales.pdf'
 });
 
 Repo.addTrabajo({
@@ -110,10 +112,12 @@ Repo.addTrabajo({
   facultad: 'Ingeniería',
   facultadKey: 'ingenieria',
   carrera: 'Ingeniería en Sistemas',
-  fecha: '2025-10-25',
+  anio: '2025',
   etiquetas: ['ciberseguridad', 'iot', 'seguridad', 'tecnología'],
   portada: '../img/ingenieria/cover-ciberseguridad-iot.jpg',
+  // Archivo real en /html/ingenieria/ing-0003-...
   detalleUrl: 'ingenieria/ing-0003-ciberseguridad-en-la-era-del-internet-de-las-cosas.html',
+  pdfUrl: '../pdfs/ciberseguridad-iot.pdf'
 });
 
 Repo.addTrabajo({
@@ -123,23 +127,27 @@ Repo.addTrabajo({
   facultad: 'Ingeniería',
   facultadKey: 'ingenieria',
   carrera: 'Ingeniería Industrial',
-  fecha: '2025-10-25',
+  anio: '2025',
   etiquetas: ['energías renovables', 'tecnología', 'sostenibilidad', 'smart grids'],
   portada: '../img/ingenieria/cover-energias-renovables.jpg',
+  // Archivo real en /html/ingenieria/ing-0004-...
   detalleUrl: 'ingenieria/ing-0004-energias-renovables-innovacion-tecnologica.html',
+  pdfUrl: '../pdfs/energias-renovables.pdf'
 });
 
 Repo.addTrabajo({
   id: 'art-ing-0005',
-  titulo: 'Automatización industrial inteligente: integración de sensores, robótica y análisis de datos',
+  titulo: 'Automatización y control en sistemas agrícolas de precisión',
   autor: 'E. Castillo',
   facultad: 'Ingeniería',
   facultadKey: 'ingenieria',
   carrera: 'Ingeniería Mecatrónica',
-  fecha: '2025-10-27',
-  etiquetas: ['automatización', 'tecnología'],
+  anio: '2025',
+  etiquetas: ['automatización', 'agricultura', 'tecnología', 'sensores'],
   portada: '../img/ingenieria/cover-agricultura-precision.jpg',
-  detalleUrl: 'ingenieria/ing-0005-automatizacion-industrial-inteligente-integracion-de-sensores-robotica-y-analisis-de-datos.html',
+  // Archivo real en /html/ingenieria/ing-0005-...
+  detalleUrl: 'ingenieria/ing-0005-automatizacion-y-control-en-sistemas-agricolas-de-precision.html',
+  pdfUrl: '../pdfs/automatizacion-agricola.pdf'
 });
 
 Repo.addTrabajo({
@@ -149,77 +157,11 @@ Repo.addTrabajo({
   facultad: 'Ingeniería',
   facultadKey: 'ingenieria',
   carrera: 'Ingeniería en Sistemas',
-  fecha: '2025-10-30',
+  anio: '2025',
   etiquetas: ['ética', 'software', 'responsabilidad social', 'tecnología'],
   portada: '../img/ingenieria/cover-software-etico.jpg',
   detalleUrl: 'ingenieria/ing-0006-desarrollo-de-software-etico-y-responsabilidad-social.html',
-});
-
-//Facultad de Arquitectura
-
-Repo.addTrabajo({
-  id: 'art-arq-0001',
-  titulo: 'La evolución del diseño gráfico digital y su influencia en la comunicación visual contemporánea',
-  autor: 'M. López',
-  facultad: 'Arquitectura',
-  facultadKey: 'arquitectura',
-  carrera: 'Diseño Gráfico',
-  fecha: '2025-10-22',
-  etiquetas: ['diseño digital', 'comunicación visual', 'tecnología', 'creatividad'],
-  portada: '../img/arquitectura/cover-evolucion-diseno-grafico.jpg',
-  detalleUrl: 'html/arquitectura/arq-0001-evolucion-del-diseno-grafico-digital.html',
-});
-
-Repo.addTrabajo({
-  id: 'art-arq-0002',
-  titulo: 'El color como elemento psicológico y comunicativo en la identidad visual de marca',
-  autor: 'L. Martínez',
-  facultad: 'Arquitectura',
-  facultadKey: 'arquitectura',
-  carrera: 'Diseño Gráfico',
-  fecha: '2025-10-23',
-  etiquetas: ['color', 'identidad visual', 'psicología del color', 'branding'],
-  portada: '../img/arquitectura/cover-color-identidad-visual.jpg',
-  detalleUrl: 'arquitectura/arq-0002-color-como-elemento-psicologico-en-la-identidad-visual.html',
-});
-
-Repo.addTrabajo({
-  id: 'art-arq-0003',
-  titulo: 'Tipografía y legibilidad: fundamentos esenciales en el diseño editorial moderno',
-  autor: 'D. Ramírez',
-  facultad: 'Arquitectura',
-  facultadKey: 'arquitectura',
-  carrera: 'Diseño Gráfico',
-  fecha: '2025-10-24',
-  etiquetas: ['tipografía', 'diseño editorial', 'legibilidad', 'publicaciones'],
-  portada: '../img/arquitectura/cover-tipografia-legibilidad.jpg',
-  detalleUrl: 'arquitectura/arq-0003-tipografia-y-legibilidad-en-el-diseno-editorial.html',
-});
-
-Repo.addTrabajo({
-  id: 'art-arq-0004',
-  titulo: 'El diseño gráfico sostenible: materiales, procesos y conciencia ambiental',
-  autor: 'C. Hernández',
-  facultad: 'Arquitectura',
-  facultadKey: 'arquitectura',
-  carrera: 'Diseño Gráfico',
-  fecha: '2025-10-29',
-  etiquetas: ['sostenibilidad', 'diseño responsable', 'ecología', 'procesos creativos'],
-  portada: '../img/arquitectura/cover-diseno-sostenible.jpg',
-  detalleUrl: 'arquitectura/arq-0004-diseno-grafico-sostenible-materiales-y-procesos.html',
-});
-
-Repo.addTrabajo({
-  id: 'art-arq-0005',
-  titulo: 'El impacto de la inteligencia artificial en los procesos creativos del diseñador gráfico',
-  autor: 'E. Cabrera',
-  facultad: 'Arquitectura',
-  facultadKey: 'arquitectura',
-  carrera: 'Diseño Gráfico',
-  fecha: '2025-10-30',
-  etiquetas: ['inteligencia artificial', 'creatividad', 'diseño digital', 'innovación'],
-  portada: '../img/arquitectura/cover-ia-procesos-creativos.jpg',
-  detalleUrl: 'arquitectura/arq-0005-impacto-de-la-inteligencia-artificial-en-el-diseno-grafico.html',
+  pdfUrl: '../pdfs/software-etico.pdf'
 });
 
 

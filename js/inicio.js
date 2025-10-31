@@ -3,7 +3,8 @@
 // =====================
 const appState = {
   trabajos: [],
-  avisos: [],                 // <— avisos
+  avisos: [],                 // <— ahora usamos avisos
+  // (compat) noticias: [],   // si llega algo viejo lo convertimos a avisos
   facultades: {
     arquitectura: { trabajos: 0, carreras: 0 },
     ingenieria:   { trabajos: 0, carreras: 0 },
@@ -76,58 +77,29 @@ function matchKeywords(item, query) {
     item.autor,
     item.facultad,
     item.carrera,
-    item.fecha,          // <— buscamos por fecha (ISO o texto)
+    item.anio,
     item.resumen,
     (item.etiquetas || []).join(' ')
   ].map(sanitize).join(' ');
   return q.split(/\s+/).every(tok => bag.includes(tok));
 }
-
-// Soporta fechas en ISO (AAAA-MM-DD) y en dd/mm/aaaa o dd-mm-aaaa
-function toMillisFromISOorLatam(s) {
-  if (!s) return 0;
-  const str = String(s).trim();
-
-  // ISO YYYY-MM-DD
-  const iso = str.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (iso) {
-    const y = +iso[1], m = +iso[2] - 1, d = +iso[3];
-    return new Date(y, m, d).getTime() || 0;
-  }
-
-  // dd/mm/yyyy o dd-mm-yyyy
-  const latam = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
-  if (latam) {
-    const d = +latam[1], mo = +latam[2] - 1, y = +latam[3];
-    const year = y < 100 ? 2000 + y : y;
-    return new Date(year, mo, d).getTime() || 0;
-  }
-
-  // Fallback: intentar Date parseable
-  const t = Date.parse(str);
-  return isNaN(t) ? 0 : t;
-}
-
-function formatFechaBadge(s) {
-  if (!s) return '';
-  // Si viene ISO, mostramos como "2025-10-30" tal cual (simple y consistente)
-  // Si quieres más lindo: Intl.DateTimeFormat
-  try {
-    const ms = toMillisFromISOorLatam(s);
-    if (!ms) return s;
-    const dtf = new Intl.DateTimeFormat('es-GT', { year: 'numeric', month: 'short', day: '2-digit' });
-    return dtf.format(new Date(ms));
-  } catch {
-    return s;
-  }
+function parseFechaDDMMYYYY(s){
+  if(!s) return 0;
+  const m = String(s).match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+  if(!m) return 0;
+  const d = parseInt(m[1],10), mo = parseInt(m[2],10)-1, y = parseInt(m[3],10);
+  const year = y < 100 ? 2000 + y : y;
+  return new Date(year, mo, d).getTime() || 0;
 }
 
 // =====================
 // Conteos por facultad
 // =====================
 function computeFacultadCounts() {
+  // Reinicia a 0
   Object.keys(appState.facultades).forEach(k => { appState.facultades[k].trabajos = 0; });
 
+  // Cuenta por clave
   appState.trabajos.forEach(t => {
     const k = (t.facultadKey || '').toLowerCase();
     if (appState.facultades[k]) {
@@ -151,6 +123,7 @@ function renderKPIs() {
 }
 
 function renderFacultadesMeta() {
+  // Helper seguro
   const set = (node, txt) => { if (node) node.textContent = txt; };
 
   set(el.facArqTrab,   fnum(appState.facultades.arquitectura.trabajos) + ' trabajos');
@@ -175,13 +148,11 @@ function renderFacultadesMeta() {
 function cardTrabajoHTML(t) {
   const img    = t.portada || '../img/placeholder-cover.jpg';
   const fac    = t.facultad || '';
+  const anio   = t.anio || '';
   const autor  = t.autor || '';
   const titulo = t.titulo || 'Trabajo académico';
   const det    = t.detalleUrl || '#';
   const pdf    = t.pdfUrl || '#';
-  const fecha  = t.fecha || ''; // ahora usamos fecha
-  const fechaBadge = formatFechaBadge(fecha);
-
   return `
   <article class="card card--hover">
     <div class="card__media"><img src="${img}" alt="Portada"></div>
@@ -189,7 +160,7 @@ function cardTrabajoHTML(t) {
       <h3 class="card__title">${titulo}</h3>
       <div class="card__meta">
         <span class="badge">${fac}</span>
-        <span class="badge">${fechaBadge}</span>
+        <span class="badge">${anio}</span>
       </div>
       <p class="util-muted">Autor: ${autor}</p>
     </div>
@@ -202,15 +173,9 @@ function cardTrabajoHTML(t) {
 
 function renderTrabajos() {
   const q = appState.ui.query;
-
   const filtrados = appState.trabajos
     .filter(t => matchKeywords(t, q))
-    // Ordenar por fecha (más reciente primero). Compat: si no trae fecha, cae a 0.
-    .sort((a, b) => {
-      const ta = toMillisFromISOorLatam(a.fecha);
-      const tb = toMillisFromISOorLatam(b.fecha);
-      return tb - ta || String(b.titulo).localeCompare(String(a.titulo)); // desempate
-    });
+    .sort((a,b)=> String(b.anio).localeCompare(String(a.anio))); // recientes primero
 
   const total = filtrados.length;
   const pages = Math.max(1, Math.ceil(total / appState.ui.perPage));
@@ -257,11 +222,11 @@ function renderAvisos() {
 
   const list = (appState.avisos || [])
     .slice()
-    .sort((a,b)=> toMillisFromISOorLatam(b.fecha) - toMillisFromISOorLatam(a.fecha));
+    .sort((a,b)=> parseFechaDDMMYYYY(b.fecha) - parseFechaDDMMYYYY(a.fecha));
 
   tbody.innerHTML = list.map(a => `
     <tr>
-      <td>${formatFechaBadge(a.fecha || '')}</td>
+      <td>${a.fecha || ''}</td>
       <td>${a.titulo || ''}</td>
       <td>${a.subtitulo || a.resumen || ''}</td>
       <td><a class="btn btn--ghost" href="${a.detalleUrl || '#'}">Ver</a></td>
@@ -295,7 +260,7 @@ function hydrate() {
   renderKPIs();
   renderFacultadesMeta();
   renderTrabajos();
-  renderAvisos();
+  renderAvisos();  // <— ahora pintamos avisos
 }
 
 // =====================
@@ -303,21 +268,14 @@ function hydrate() {
 // =====================
 const Repo = {
   addTrabajo(t) {
-    // Compat: si viene 'anio', lo convertimos a 'fecha' (1 de enero del anio)
-    let fecha = t.fecha || '';
-    if (!fecha && t.anio) {
-      const y = String(t.anio).trim();
-      fecha = /^\d{4}$/.test(y) ? `${y}-01-01` : y; // si no es AAAA, lo dejamos tal cual
-    }
-
     appState.trabajos.push({
-      id:          t.id || (crypto && crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+      id:          t.id || crypto.randomUUID(),
       titulo:      t.titulo || '',
       autor:       t.autor || '',
       facultad:    t.facultad || '',
       facultadKey: t.facultadKey || '',
       carrera:     t.carrera || '',
-      fecha,                           // <— ahora guardamos fecha
+      anio:        t.anio || '',
       etiquetas:   t.etiquetas || [],
       resumen:     t.resumen || '',
       portada:     t.portada || '',
@@ -333,7 +291,7 @@ const Repo = {
   // Nuevo: Avisos
   addAviso(a) {
     appState.avisos.unshift({
-      id:         a.id || (crypto && crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+      id:         a.id || crypto.randomUUID(),
       fecha:      a.fecha || '',
       titulo:     a.titulo || 'Aviso',
       subtitulo:  a.subtitulo || a.resumen || '',
@@ -343,21 +301,22 @@ const Repo = {
     renderAvisos();
   },
 
-  // Compat noticias → avisos
+  // Compatibilidad: si alguna parte del sitio sigue usando "noticias",
+  // lo convertimos a aviso automáticamente.
   addNoticia(n) {
     Repo.addAviso({
       id: n.id,
       fecha: n.fecha,
       titulo: n.titulo,
       subtitulo: n.resumen,
-      detalleUrl: n.url
+      detalleUrl: n.url // en lo viejo se usaba url
     });
   },
 
   setFacultad(key, { carreras }) {
     const k = (key || '').toLowerCase();
     if (!appState.facultades[k]) {
-      appState.facultades[k] = { trabajos: 0, carreras: 0 };
+      appState.facultades[k] = { trabajos: 0, carreras: 0 }; // crea si no existe
     }
     appState.facultades[k].carreras = Number(carreras || 0);
     renderKPIs();
@@ -366,7 +325,7 @@ const Repo = {
 
   setDescargas(n) {
     appState.metricas.descargas = Number(n || 0);
-    renderKPIs();
+    renderKPIs(); // solo se pintará si existe el KPI en el HTML
   },
 
   setPerPage(n) {
