@@ -4,14 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Plataforma Académica UDEO — Inicio</title>
+  <!-- Ahora estamos en la RAÍZ -->
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
   <header class="header">
     <div class="container header-inner" style="width:100%">
-      <a href="inicio.html" class="brand" aria-label="Inicio">
+      <!-- En la raíz, apunta a index.html -->
+      <a href="index.html" class="brand" aria-label="Inicio">
         <div class="brand__logo">
-          <img src="../img/logo-udeo.png" alt="Logo" width="44" height="44">
+          <img src="img/logo-udeo.png" alt="Logo" width="44" height="44">
         </div>
         <div class="brand__title">Plataforma Académica UDEO</div>
       </a>
@@ -23,9 +25,9 @@
 
       <nav class="nav">
         <ul class="nav__list">
-          <li><a class="nav__link is-active" href="inicio.html">Inicio</a></li>
-          <li><a class="nav__link" href="facultades.html">Facultades</a></li>
-          <li><a class="nav__link" href="avisos.html">Avisos</a></li>
+          <li><a class="nav__link is-active" href="index.html">Inicio</a></li>
+          <li><a class="nav__link" href="html/facultades.html">Facultades</a></li>
+          <li><a class="nav__link" href="html/avisos.html">Avisos</a></li>
         </ul>
       </nav>
 
@@ -46,7 +48,7 @@
           <h1 class="hero__title">Publicación y consulta de trabajos académicos estudiantiles</h1>
           <p class="hero__desc">Explora artículos, proyectos e investigaciones por facultad y carrera. Encuentra contenidos con tu buscador de palabras clave.</p>
           <div class="hero__actions">
-            <a href="facultades.html" class="btn btn--primary">Explorar Facultades</a>
+            <a href="html/facultades.html" class="btn btn--primary">Explorar Facultades</a>
             <a href="#como-funciona" class="btn btn--ghost">Cómo funciona</a>
             <a href="#requisitos" class="btn btn--soft">Requisitos de publicación</a>
           </div>
@@ -54,10 +56,10 @@
 
         <div class="util-surface util-pad util-center" style="border-radius:20px;min-height:220px">
           <div class="chips" style="margin-top:0">
-            <a class="chip" href="facultades.html">Ensayos</a>
-            <a class="chip" href="facultades.html">Investigación</a>
-            <a class="chip" href="facultades.html">Proyectos</a>
-            <a class="chip" href="facultades.html">Presentaciones</a>
+            <a class="chip" href="html/facultades.html">Ensayos</a>
+            <a class="chip" href="html/facultades.html">Investigación</a>
+            <a class="chip" href="html/facultades.html">Proyectos</a>
+            <a class="chip" href="html/facultades.html">Presentaciones</a>
           </div>
         </div>
       </div>
@@ -94,7 +96,7 @@
         </div>
 
         <div class="util-row" style="justify-content:flex-end">
-          <a class="btn btn--ghost" href="facultades.html">Ver todos por Facultad</a>
+          <a class="btn btn--ghost" href="html/facultades.html">Ver todos por Facultad</a>
         </div>
       </div>
     </section>
@@ -106,13 +108,13 @@
 
         <div class="faculties-filters">
           <div class="chips">
-            <a class="chip" aria-pressed="true" href="facultades.html">Todas</a>
-            <a class="chip" href="arquitectura.html">Arquitectura</a>
-            <a class="chip" href="ingenieria.html">Ingeniería</a>
-            <a class="chip" href="economicas.html">Ciencias Económicas</a>
-            <a class="chip" href="humanidades.html">Humanidades</a>
-            <a class="chip" href="derecho.html">Derecho</a>
-            <a class="chip" href="salud.html">Ciencias de la Salud</a>
+            <a class="chip" aria-pressed="true" href="html/facultades.html">Todas</a>
+            <a class="chip" href="html/arquitectura.html">Arquitectura</a>
+            <a class="chip" href="html/ingenieria.html">Ingeniería</a>
+            <a class="chip" href="html/economicas.html">Ciencias Económicas</a>
+            <a class="chip" href="html/humanidades.html">Humanidades</a>
+            <a class="chip" href="html/derecho.html">Derecho</a>
+            <a class="chip" href="html/salud.html">Ciencias de la Salud</a>
           </div>
         </div>
 
@@ -129,8 +131,8 @@
               </div>
             </div>
             <div class="faculty-card__actions">
-              <a class="btn btn--ghost" href="arquitectura.html">Ver detalles</a>
-              <a class="btn btn--primary" href="arquitectura.html#ultimos">Ver trabajos</a>
+              <a class="btn btn--ghost" href="html/arquitectura.html">Ver detalles</a>
+              <a class="btn btn--primary" href="html/arquitectura.html#ultimos">Ver trabajos</a>
             </div>
           </article>
 
@@ -146,8 +148,8 @@
               </div>
             </div>
             <div class="faculty-card__actions">
-              <a class="btn btn--ghost" href="ingenieria.html">Ver detalles</a>
-              <a class="btn btn--primary" href="ingenieria.html#ultimos">Ver trabajos</a>
+              <a class="btn btn--ghost" href="html/ingenieria.html">Ver detalles</a>
+              <a class="btn btn--primary" href="html/ingenieria.html#ultimos">Ver trabajos</a>
             </div>
           </article>
 
@@ -163,8 +165,8 @@
               </div>
             </div>
             <div class="faculty-card__actions">
-              <a class="btn btn--ghost" href="economicas.html">Ver detalles</a>
-              <a class="btn btn--primary" href="economicas.html#ultimos">Ver trabajos</a>
+              <a class="btn btn--ghost" href="html/economicas.html">Ver detalles</a>
+              <a class="btn btn--primary" href="html/economicas.html#ultimos">Ver trabajos</a>
             </div>
           </article>
 
@@ -180,8 +182,8 @@
               </div>
             </div>
             <div class="faculty-card__actions">
-              <a class="btn btn--ghost" href="humanidades.html">Ver detalles</a>
-              <a class="btn btn--primary" href="humanidades.html#ultimos">Ver trabajos</a>
+              <a class="btn btn--ghost" href="html/humanidades.html">Ver detalles</a>
+              <a class="btn btn--primary" href="html/humanidades.html#ultimos">Ver trabajos</a>
             </div>
           </article>
 
@@ -197,8 +199,8 @@
               </div>
             </div>
             <div class="faculty-card__actions">
-              <a class="btn btn--ghost" href="derecho.html">Ver detalles</a>
-              <a class="btn btn--primary" href="derecho.html#ultimos">Ver trabajos</a>
+              <a class="btn btn--ghost" href="html/derecho.html">Ver detalles</a>
+              <a class="btn btn--primary" href="html/derecho.html#ultimos">Ver trabajos</a>
             </div>
           </article>
 
@@ -214,8 +216,8 @@
               </div>
             </div>
             <div class="faculty-card__actions">
-              <a class="btn btn--ghost" href="salud.html">Ver detalles</a>
-              <a class="btn btn--primary" href="salud.html#ultimos">Ver trabajos</a>
+              <a class="btn btn--ghost" href="html/salud.html">Ver detalles</a>
+              <a class="btn btn--primary" href="html/salud.html#ultimos">Ver trabajos</a>
             </div>
           </article>
         </div>
@@ -243,8 +245,8 @@
             <h4 class="sidebar__title">Accesos rápidos</h4>
             <nav class="list">
               <a href="#requisitos"><span>Requisitos de publicación</span><span>›</span></a>
-              <a href="facultades.html"><span>Ver Facultades</span><span>›</span></a>
-              <a href="avisos.html"><span>Avisos</span><span>›</span></a>
+              <a href="html/facultades.html"><span>Ver Facultades</span><span>›</span></a>
+              <a href="html/avisos.html"><span>Avisos</span><span>›</span></a>
             </nav>
           </div>
         </aside>
@@ -287,7 +289,7 @@
           </tbody>
         </table>
         <div class="util-row" style="justify-content:flex-end">
-          <a class="btn btn--ghost" href="avisos.html">Ver todos los avisos</a>
+          <a class="btn btn--ghost" href="html/avisos.html">Ver todos los avisos</a>
         </div>
       </div>
     </section>
@@ -297,7 +299,7 @@
     <div class="container grid">
       <div class="col-12 util-stack-sm">
         <div class="footer__brand">
-          <img src="../img/logo-udeo-mini.png" alt="UDEO" width="28" height="28">
+          <img src="img/logo-udeo-mini.png" alt="UDEO" width="28" height="28">
           <span>Plataforma Académica UDEO</span>
         </div>
         <div class="footer__bottom">© 2025 Universidad de Occidente — Sede Mazatenango. Todos los derechos reservados.</div>
@@ -305,29 +307,44 @@
     </div>
   </footer>
 
-  <script src="../js/inicio.js"></script>
-  <script src="../js/contenido-inicio.js"></script>
+  <!-- Estado global + contenido -->
+  <script src="js/inicio.js"></script>
+  <script src="js/contenido-inicio.js"></script>
 
   <!-- Render de AVISOS en la portada -->
   <script>
     (function(){
       function parseFechaDDMMYYYY(s){
-        // Devuelve timestamp para ordenar; si falla, 0
         if(!s) return 0;
-        const m = String(s).match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+        const m = String(s).match(/^(\\d{1,2})[\\/-](\\d{1,2})[\\/-](\\d{2,4})$/);
         if(!m) return 0;
         const d = parseInt(m[1],10), mo = parseInt(m[2],10)-1, y = parseInt(m[3],10);
         const year = y < 100 ? 2000 + y : y;
         return new Date(year, mo, d).getTime() || 0;
       }
 
+      function normalizeHref(href){
+  if (!href) return '#';
+
+  // Absolutos (http/https, mailto, tel, data)
+  if (/^(https?:\/\/|mailto:|tel:|data:)/i.test(href)) return href;
+
+  // Si ya apunta a /html/... (con o sin / inicial), lo normalizamos a relativo sin la barra inicial
+  if (/^\/?html\//i.test(href)) return href.replace(/^\/+/, '');
+
+  // Si viene como "avisos/archivo.html" u otro subpath relativo
+  // (caso típico cuando antes se enlazaba desde /html), prefijamos "html/"
+  return 'html/' + href.replace(/^\/+/, '');
+}
+
       function fillAvisos(){
         if (!window.Repo || !Repo.state) return;
         const tbody = document.getElementById('tabla-avisos');
         if (!tbody) return;
 
-        // Compatibilidad: si existen noticias antiguas, convier­te­las a avisos "al vuelo"
         if (!Array.isArray(Repo.state.avisos)) Repo.state.avisos = [];
+
+        // Compat: migrar "noticias" -> "avisos" si existiera legado
         if (Array.isArray(Repo.state.noticias) && Repo.state.noticias.length){
           Repo.state.noticias.forEach(n=>{
             Repo.state.avisos.push({
@@ -339,7 +356,6 @@
               detalleUrl: n.detalleUrl || (n.url || 'avisos/aviso-generico.html')
             });
           });
-          // Limpia noticias para no duplicar
           Repo.state.noticias = [];
         }
 
@@ -351,7 +367,7 @@
           const fecha = a.fecha || '—';
           const titulo = a.titulo || 'Aviso';
           const resumen = a.subtitulo || '';
-          const href = a.detalleUrl || '#';
+          const href = normalizeHref(a.detalleUrl || '#');
           return `
             <tr>
               <td>${fecha}</td>
@@ -371,4 +387,3 @@
   </script>
 </body>
 </html>
-
